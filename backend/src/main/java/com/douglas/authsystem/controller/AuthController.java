@@ -1,7 +1,11 @@
 package com.douglas.authsystem.controller;
 
+import com.douglas.authsystem.dto.RegisterRequestDTO;
 import com.douglas.authsystem.model.User;
 import com.douglas.authsystem.service.UserService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +19,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.save(user);
+    public User register(@Valid @RequestBody RegisterRequestDTO request) {
+
+        return userService.save(request);
+
     }
 }
