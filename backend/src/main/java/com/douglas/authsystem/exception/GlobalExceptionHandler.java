@@ -28,4 +28,16 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public Map<String, String> handleEmailAlreadyExists(
+            EmailAlreadyExistsException exception) {
+
+        Map<String, String> error = new HashMap<>();
+
+        error.put("message", exception.getMessage());
+
+        return error;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.douglas.authsystem.controller;
 
+import com.douglas.authsystem.dto.LoginRequestDTO;
 import com.douglas.authsystem.dto.RegisterRequestDTO;
 import com.douglas.authsystem.model.User;
 import com.douglas.authsystem.service.UserService;
@@ -22,6 +23,13 @@ public class AuthController {
     public User register(@Valid @RequestBody RegisterRequestDTO request) {
 
         return userService.save(request);
+
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid @RequestBody LoginRequestDTO request) {
+
+        return userService.login(request);
 
     }
 }
