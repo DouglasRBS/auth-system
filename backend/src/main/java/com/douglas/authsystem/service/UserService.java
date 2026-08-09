@@ -5,21 +5,26 @@ import com.douglas.authsystem.dto.RegisterRequestDTO;
 import com.douglas.authsystem.exception.EmailAlreadyExistsException;
 import com.douglas.authsystem.model.User;
 import com.douglas.authsystem.repository.UserRepository;
+import com.douglas.authsystem.security.JwtService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    private final JwtService jwtService;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository,
-            BCryptPasswordEncoder passwordEncoder) {
+                BCryptPasswordEncoder passwordEncoder,
+                JwtService jwtService) {
 
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
+    this.jwtService = jwtService;
+}
 
     public User save(RegisterRequestDTO request) {
 
@@ -41,14 +46,14 @@ public class UserService {
 
     public String login(LoginRequestDTO request) {
 
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+    User user = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Senha inválida.");
-        }
-
-        return "Login realizado com sucesso!";
+    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        throw new RuntimeException("Senha inválida");
     }
+
+    return jwtService.generateToken(user.getEmail());
+}
 
 }
