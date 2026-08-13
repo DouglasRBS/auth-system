@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Welcome from './components/Welcome'
+import Login from './components/Login'
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <div>
+
       <h1>Meu sistema de autenticação</h1>
 
       <Welcome name={name} />
@@ -14,6 +16,9 @@ function App() {
       <button onClick={() => setName('João')}>
         Mudar nome
       </button>
+
+      <Login />
+
     </div>
   )
 }
