@@ -1,0 +1,152 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #102a56 0%,
+      #080b12 45%,
+      #05070b 100%
+    );
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 42px;
+
+  background: #0d111a;
+
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(37, 99, 235, 0.08);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-header h2 {
+  margin: 0 0 10px;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #f8fafc;
+}
+
+.login-header p {
+  margin: 0;
+
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+
+  color: #e2e8f0;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-group input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  background: #080c14;
+
+  border: 1px solid #263244;
+  border-radius: 9px;
+
+  color: #f8fafc;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.input-group input::placeholder {
+  color: #64748b;
+}
+
+.input-group input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.15),
+    0 0 15px rgba(37, 99, 235, 0.08);
+}
+
+.login-button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.login-button:hover {
+  background: #1d4ed8;
+
+  box-shadow:
+    0 0 20px rgba(37, 99, 235, 0.35);
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-footer {
+  margin-top: 26px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.login-footer span {
+  color: #3b82f6;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.login-footer span:hover {
+  color: #60a5fa;
+}

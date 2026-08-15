@@ -1,41 +1,80 @@
 import { useState } from 'react'
+import '../styles/Login.css'
+import api from '../services/api'
 
 function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
 
-    console.log('Email:', email)
-    console.log('Senha:', password)
+    try {
+
+      const response = await api.post('/auth/login', {
+        email,
+        password
+      })
+
+      console.log('Resposta:', response.data)
+
+    } catch (error) {
+
+      console.error('Erro no login:', error)
+
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="login-container">
 
-      <h2>Login</h2>
+      <div className="login-card">
 
-      <input
-        type="email"
-        placeholder="Digite seu email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
+        <div className="login-header">
+          <h2>Bem-vindo</h2>
+          <p>Entre na sua conta para continuar</p>
+        </div>
 
-      <input
-        type="password"
-        placeholder="Digite sua senha"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
+        <form onSubmit={handleSubmit}>
 
-      <button type="submit">
-        Entrar
-      </button>
+          <div className="input-group">
+            <label>Email</label>
 
-    </form>
+            <input
+              type="email"
+              placeholder="seu@email.com"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Senha</label>
+
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-button">
+            Entrar
+          </button>
+
+        </form>
+
+        <p className="login-footer">
+          Ainda não possui uma conta? <span>Cadastre-se</span>
+        </p>
+
+      </div>
+
+    </div>
   )
 }
 
