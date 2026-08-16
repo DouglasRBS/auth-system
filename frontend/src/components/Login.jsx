@@ -21,6 +21,10 @@ function Login() {
 
       console.log('Login realizado com sucesso!')
 
+      const responseHello = await api.get('/hello')
+
+      console.log('Resposta protegida:', responseHello.data)
+
     } catch (error) {
 
       console.error('Erro no login:', error)

@@ -8,13 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/hello")
-    public String hello() {
-        return "Olá Douglas! Minha API Spring Boot está funcionando!";
-    }
+    public String hello(Authentication authentication) {
 
-    @GetMapping("/me")
-    public String me(Authentication authentication) {
-
-        return "Usuário autenticado: " + authentication.getName();
+        return "Olá, " + authentication.getName() +
+                "! Você acessou uma rota protegida.";
     }
 }
