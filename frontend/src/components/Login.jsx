@@ -17,7 +17,9 @@ function Login() {
         password
       })
 
-      console.log('Resposta:', response.data)
+      localStorage.setItem('token', response.data)
+
+      console.log('Login realizado com sucesso!')
 
     } catch (error) {
 
