@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../styles/Login.css'
 import api from '../services/api'
 
-function Login() {
+function Login({ onLogin }) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,12 +19,11 @@ function Login() {
 
       localStorage.setItem('token', response.data)
 
+      onLogin()
+
       console.log('Login realizado com sucesso!')
 
-      const responseHello = await api.get('/hello')
-
-      console.log('Resposta protegida:', responseHello.data)
-
+      
     } catch (error) {
 
       console.error('Erro no login:', error)
