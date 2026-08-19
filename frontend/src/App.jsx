@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Login from './components/Login'
+import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 
 function App() {
@@ -8,18 +9,29 @@ function App() {
     !!localStorage.getItem('token')
   )
 
+  const [showRegister, setShowRegister] = useState(false)
+
+  if (isAuthenticated) {
+    return (
+      <Dashboard
+        onLogout={() => setIsAuthenticated(false)}
+      />
+    )
+  }
+
+  if (showRegister) {
+    return (
+      <Register
+        onRegister={() => setShowRegister(false)}
+      />
+    )
+  }
+
   return (
-    <>
-      {isAuthenticated ? (
-        <Dashboard
-          onLogout={() => setIsAuthenticated(false)}
-        />
-      ) : (
-        <Login
-          onLogin={() => setIsAuthenticated(true)}
-        />
-      )}
-    </>
+    <Login
+      onLogin={() => setIsAuthenticated(true)}
+      onRegister={() => setShowRegister(true)}
+    />
   )
 }
 

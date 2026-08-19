@@ -1,46 +1,74 @@
 import { useState } from 'react'
-import '../styles/Login.css'
+import '../styles/Register.css'
 import api from '../services/api'
 
-function Login({ onLogin, onRegister }) {
+function Register({ onRegister }) {
 
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   async function handleSubmit(event) {
     event.preventDefault()
 
+    setError('')
+
     try {
 
-      const response = await api.post('/auth/login', {
+      await api.post('/auth/register', {
+        name,
         email,
         password
       })
 
-      localStorage.setItem('token', response.data)
+      console.log('Cadastro realizado com sucesso!')
 
-      onLogin()
-
-      console.log('Login realizado com sucesso!')
+      onRegister()
 
     } catch (error) {
 
-      console.error('Erro no login:', error)
+      console.error('Erro no cadastro:', error)
+
+      if (error.response?.data) {
+        setError(
+          Object.values(error.response.data).join(', ')
+        )
+      } else {
+        setError('Erro ao realizar cadastro.')
+      }
 
     }
   }
-
   return (
     <div className="login-container">
 
       <div className="login-card">
 
         <div className="login-header">
-          <h2>Bem-vindo</h2>
-          <p>Entre na sua conta para continuar</p>
+          <h2>Criar conta</h2>
+          <p>Cadastre-se para começar</p>
         </div>
 
+        {error && (
+          <p className="error-message">
+            {error}
+          </p>
+        )}
+
         <form onSubmit={handleSubmit}>
+
+          <div className="input-group">
+            <label>Nome</label>
+
+            <input
+              type="text"
+              placeholder="Seu nome"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
+            />
+          </div>
 
           <div className="input-group">
             <label>Email</label>
@@ -67,15 +95,15 @@ function Login({ onLogin, onRegister }) {
           </div>
 
           <button type="submit" className="login-button">
-            Entrar
+            Criar conta
           </button>
 
         </form>
 
         <p className="login-footer">
-          Ainda não possui uma conta?{' '}
+          Já possui uma conta?{' '}
           <span onClick={onRegister}>
-            Cadastre-se
+            Entrar
           </span>
         </p>
 
@@ -85,4 +113,4 @@ function Login({ onLogin, onRegister }) {
   )
 }
 
-export default Login
+export default Register
