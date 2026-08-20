@@ -6,9 +6,12 @@ function Login({ onLogin, onRegister }) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(event) {
     event.preventDefault()
+
+    setLoading(true)
 
     try {
 
@@ -19,13 +22,17 @@ function Login({ onLogin, onRegister }) {
 
       localStorage.setItem('token', response.data)
 
-      onLogin()
-
       console.log('Login realizado com sucesso!')
+
+      onLogin()
 
     } catch (error) {
 
       console.error('Erro no login:', error)
+
+    } finally {
+
+      setLoading(false)
 
     }
   }
@@ -66,8 +73,12 @@ function Login({ onLogin, onRegister }) {
             />
           </div>
 
-          <button type="submit" className="login-button">
-            Entrar
+          <button
+            type="submit"
+            className="login-button"
+            disabled={loading}
+          >
+            {loading ? 'Entrando...' : 'Entrar'}
           </button>
 
         </form>

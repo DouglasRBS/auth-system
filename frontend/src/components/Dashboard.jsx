@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import '../styles/Dashboard.css'
 import api from '../services/api'
 
 function Dashboard({ onLogout }) {
@@ -34,14 +35,34 @@ function Dashboard({ onLogout }) {
   }
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="dashboard-container">
 
-      <p>{message}</p>
+      <div className="dashboard-card">
 
-      <button onClick={handleLogout}>
-        Sair
-      </button>
+        <div className="dashboard-icon">
+          🔐
+        </div>
+
+        <h1>Dashboard</h1>
+
+        <p className="dashboard-message">
+          {message}
+        </p>
+
+        <div className="dashboard-status">
+          <span className="status-dot"></span>
+          Autenticado com sucesso
+        </div>
+
+        <button
+          className="logout-button"
+          onClick={handleLogout}
+        >
+          Sair da conta
+        </button>
+
+      </div>
+
     </div>
   )
 }

@@ -8,11 +8,13 @@ function Register({ onRegister }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(event) {
     event.preventDefault()
 
     setError('')
+    setLoading(true)
 
     try {
 
@@ -37,6 +39,10 @@ function Register({ onRegister }) {
       } else {
         setError('Erro ao realizar cadastro.')
       }
+
+    } finally {
+
+      setLoading(false)
 
     }
   }
@@ -94,8 +100,12 @@ function Register({ onRegister }) {
             />
           </div>
 
-          <button type="submit" className="login-button">
-            Criar conta
+          <button
+            type="submit"
+            className="login-button"
+            disabled={loading}
+          >
+            {loading ? 'Criando conta...' : 'Criar conta'}
           </button>
 
         </form>
