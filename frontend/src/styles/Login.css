@@ -150,3 +150,14 @@
 .login-footer span:hover {
   color: #60a5fa;
 }
+
+.error-message {
+    margin-bottom: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #2a1015;
+    border: 1px solid #6b1d2a;
+    color: #ff6b81;
+    font-size: 14px;
+    text-align: center;
+}

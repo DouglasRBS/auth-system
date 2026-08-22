@@ -18,10 +18,16 @@ function Dashboard({ onLogout }) {
 
       } catch (error) {
 
-        console.error('Erro ao carregar dashboard:', error)
-        setMessage('Não foi possível carregar os dados.')
+  console.error('Erro ao carregar dashboard:', error)
 
-      }
+  if (error.response?.status === 401) {
+    localStorage.removeItem('token')
+    onLogout()
+    return
+  }
+
+  setMessage('Não foi possível carregar os dados.')
+}
 
     }
 

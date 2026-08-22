@@ -7,10 +7,12 @@ function Login({ onLogin, onRegister }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   async function handleSubmit(event) {
     event.preventDefault()
 
+    setError('')
     setLoading(true)
 
     try {
@@ -30,6 +32,12 @@ function Login({ onLogin, onRegister }) {
 
       console.error('Erro no login:', error)
 
+      if (error.response?.status === 401) {
+        setError('E-mail ou senha incorretos.')
+      } else {
+        setError('Não foi possível realizar o login.')
+      }
+
     } finally {
 
       setLoading(false)
@@ -46,6 +54,12 @@ function Login({ onLogin, onRegister }) {
           <h2>Bem-vindo</h2>
           <p>Entre na sua conta para continuar</p>
         </div>
+
+        {error && (
+          <p className="error-message">
+            {error}
+          </p>
+        )}
 
         <form onSubmit={handleSubmit}>
 

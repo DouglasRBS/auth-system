@@ -44,16 +44,33 @@ public class UserService {
 
     }
 
+
     public String login(LoginRequestDTO request) {
+
+    System.out.println("EMAIL RECEBIDO: " + request.getEmail());
 
     User user = userRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    System.out.println("USUÁRIO ENCONTRADO: " + user.getEmail());
+
+    boolean senhaCorreta =
+            passwordEncoder.matches(
+                    request.getPassword(),
+                    user.getPassword()
+            );
+
+    System.out.println("SENHA CORRETA: " + senhaCorreta);
+
+    if (!senhaCorreta) {
         throw new RuntimeException("Senha inválida");
     }
 
-    return jwtService.generateToken(user.getEmail());
+    String token = jwtService.generateToken(user.getEmail());
+
+    System.out.println("TOKEN GERADO!");
+
+    return token;
 }
 
 }

@@ -11,20 +11,32 @@ function App() {
 
   const [showRegister, setShowRegister] = useState(false)
 
+  function handleLogout() {
+
+    localStorage.removeItem('token')
+
+    setIsAuthenticated(false)
+    setShowRegister(false)
+  }
+
   if (isAuthenticated) {
+
     return (
       <Dashboard
-        onLogout={() => setIsAuthenticated(false)}
+        onLogout={handleLogout}
       />
     )
+
   }
 
   if (showRegister) {
+
     return (
       <Register
         onRegister={() => setShowRegister(false)}
       />
     )
+
   }
 
   return (

@@ -6,7 +6,10 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
 
-  if (config.url === '/auth/login' || config.url === '/auth/register') {
+  if (
+    config.url === '/auth/login' ||
+    config.url === '/auth/register'
+  ) {
     return config
   }
 
