@@ -1,34 +1,189 @@
 .register-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #050b14;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #0c0a12;
+}
+
+.register-container::before,
+.register-container::after {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.register-container::before {
+  background: radial-gradient(circle, #1e3a8a 0%, #3b1a5c 55%, transparent 75%);
+  top: -160px;
+  right: -120px;
+}
+
+.register-container::after {
+  background: radial-gradient(circle, #7a1f3d 0%, #3b1240 60%, transparent 75%);
+  bottom: -180px;
+  left: -120px;
 }
 
 .register-card {
-    width: 400px;
-    padding: 40px;
-    background: #0b1424;
-    border: 1px solid #172a46;
-    border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
+  padding: 44px 36px 36px;
+  background: linear-gradient(160deg, rgba(120, 60, 90, 0.35), rgba(40, 30, 70, 0.35));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: card-rise 0.5s ease both;
+}
+
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.login-avatar svg {
+  width: 48px;
+  height: 48px;
+  fill: rgba(255, 255, 255, 0.65);
 }
 
 .register-card h2 {
-    color: #ffffff;
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
 }
 
 .register-card p {
-    color: #8da2bd;
+  margin: 0 0 28px;
+  text-align: center;
+  color: rgba(226, 232, 240, 0.65);
+  font-size: 14px;
+}
+
+.register-card .input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.register-card .input-group svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  fill: rgba(255, 255, 255, 0.55);
+}
+
+.register-card .input-group input {
+  flex: 1;
+  width: 100%;
+  padding: 6px 0;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 15px;
+  outline: none;
+}
+
+.register-card .input-group input::placeholder {
+  color: rgba(226, 232, 240, 0.5);
+}
+
+.register-card .input-group:focus-within {
+  border-bottom-color: #a78bfa;
+}
+
+.register-card .input-group:focus-within svg {
+  fill: #a78bfa;
+}
+
+.register-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed 0%, #4c5fd5 100%);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-position 0.4s ease, box-shadow 0.2s, transform 0.15s;
+}
+
+.register-button:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 0 26px rgba(76, 95, 213, 0.5);
+}
+
+.register-button:active {
+  transform: scale(0.98);
+}
+
+.register-footer {
+  margin-top: 24px;
+  text-align: center;
+  color: rgba(226, 232, 240, 0.5);
+  font-size: 14px;
+}
+
+.login-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #c4b5fd;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: inherit;
+  transition: color 0.2s;
+}
+
+.login-link:hover {
+  color: #ddd6fe;
 }
 
 .error-message {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 8px;
-    background: #2a1015;
-    border: 1px solid #6b1d2a;
-    color: #ff6b81;
-    font-size: 14px;
+  margin-bottom: 18px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(127, 29, 29, 0.25);
+  border: 1px solid #b91c1c;
+  color: #fca5a5;
+  font-size: 14px;
+  text-align: center;
 }
