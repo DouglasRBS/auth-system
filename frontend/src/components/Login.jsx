@@ -99,9 +99,13 @@ function Login({ onLogin, onRegister }) {
 
         <p className="login-footer">
           Ainda não possui uma conta?{' '}
-          <span onClick={onRegister}>
+          <button
+            type="button"
+            className="register-link"
+            onClick={onRegister}
+          >
             Cadastre-se
-          </span>
+          </button>
         </p>
 
       </div>
