@@ -26,7 +26,7 @@ O projeto foi desenvolvido para praticar autenticação, segurança de APIs, JWT
 
 ### 🏠 Dashboard
 
-![Dashboard](docs/protecteArea.png)
+![Dashboard](docs/protectedArea.png)
 
 ---
 
