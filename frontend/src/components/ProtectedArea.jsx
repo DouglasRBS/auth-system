@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import '../styles/Dashboard.css'
+import '../styles/ProtectedArea.css'
 import api from '../services/api'
 
-function Dashboard({ onLogout }) {
+function ProtectedArea({ onLogout }) {
 
   const [message, setMessage] = useState('Carregando...')
 
   useEffect(() => {
 
-    async function loadDashboard() {
+    async function loadProtectedArea() {
 
       try {
 
@@ -18,20 +18,20 @@ function Dashboard({ onLogout }) {
 
       } catch (error) {
 
-  console.error('Erro ao carregar dashboard:', error)
+        console.error('Erro ao carregar a área protegida:', error)
 
-  if (error.response?.status === 401) {
-    localStorage.removeItem('token')
-    onLogout()
-    return
-  }
+        if (error.response?.status === 401) {
+          localStorage.removeItem('token')
+          onLogout()
+          return
+        }
 
-  setMessage('Não foi possível carregar os dados.')
-}
+        setMessage('Não foi possível carregar os dados.')
+      }
 
     }
 
-    loadDashboard()
+    loadProtectedArea()
 
   }, [])
 
@@ -41,21 +41,21 @@ function Dashboard({ onLogout }) {
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="protected-area-container">
 
-      <div className="dashboard-card">
+      <div className="protected-area-card">
 
-        <div className="dashboard-icon">
+        <div className="protected-area-icon">
           🔐
         </div>
 
-        <h1>Dashboard</h1>
+        <h1>Área Protegida</h1>
 
-        <p className="dashboard-message">
+        <p className="protected-area-message">
           {message}
         </p>
 
-        <div className="dashboard-status">
+        <div className="protected-area-status">
           <span className="status-dot"></span>
           Autenticado com sucesso
         </div>
@@ -73,4 +73,4 @@ function Dashboard({ onLogout }) {
   )
 }
 
-export default Dashboard
+export default ProtectedArea

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import Login from './components/Login'
 import Register from './components/Register'
-import Dashboard from './components/Dashboard'
+import ProtectedArea from './components/ProtectedArea'
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
 
   if (isAuthenticated) {
     return (
-      <Dashboard onLogout={handleLogout} />
+      <ProtectedArea onLogout={handleLogout} />
     )
   }
 

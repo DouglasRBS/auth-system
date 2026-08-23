@@ -4,6 +4,14 @@ Sistema de autenticação Full Stack desenvolvido com **React** no frontend e **
 
 O projeto foi desenvolvido para praticar autenticação, segurança de APIs, JWT, integração entre frontend e backend e persistência de usuários em banco de dados.
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-black?logo=jsonwebtokens&logoColor=white" />
+</p>
+
 ---
 
 ## 🖥️ Demonstração
@@ -18,7 +26,7 @@ O projeto foi desenvolvido para praticar autenticação, segurança de APIs, JWT
 
 ### 🏠 Dashboard
 
-![Dashboard](docs/dashboard.png)
+![Dashboard](docs/protecteArea.png)
 
 ---
 
@@ -46,16 +54,16 @@ O projeto foi desenvolvido para praticar autenticação, segurança de APIs, JWT
 
 ## 🔐 Funcionalidades
 
-- Cadastro de usuários
-- Login
-- Autenticação utilizando JWT
-- Criptografia de senhas com BCrypt
-- Rotas protegidas
-- Logout
-- Validação de sessão
-- Tratamento de erros
-- Indicador de carregamento durante requisições
-- Integração entre React e Spring Boot
+- ✅ Cadastro de usuários
+- ✅ Login
+- ✅ Autenticação utilizando JWT
+- ✅ Criptografia de senhas com BCrypt
+- ✅ Rotas protegidas
+- ✅ Logout
+- ✅ Validação de sessão
+- ✅ Tratamento de erros
+- ✅ Indicador de carregamento durante requisições
+- ✅ Integração entre React e Spring Boot
 
 ---
 
@@ -77,3 +85,4 @@ Service
 Repository
    ↓
 Banco de dados
+```
